@@ -88,7 +88,7 @@ const InboxPage = () => {
   };
 
   return (
-    <div className="rounded-r-xl w-full bg-[#E6F5FE]">
+    <div className="rounded-r-xl bg-[#E6F5FE]">
       <div className="flex justify-between py-5 mx-10">
         <h1 className="text-xl font-semibold">Inbox</h1>
         <div className="flex items-center gap-1 border px-5 rounded-lg border-[#0098F1] bg-white">
