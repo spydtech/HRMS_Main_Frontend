@@ -37,7 +37,7 @@ const ForProjectSidebar = ({setActiveTab}) =>{
       component: "Dashboard",
       icon: <FaTachometerAlt />,
     },
-    { title: "Inbox", component: "", icon: <FaCalendarAlt /> },
+    { title: "Inbox", component: "Inbox", icon: <FaCalendarAlt /> },
     { title: "Chat", component: "Chat", icon: <FaCalendarCheck /> },
     { title: "Project", component: "", icon: <FaTasks /> },
     { title: "Clients", component: "", icon: <MdOutlineSocialDistance /> },
