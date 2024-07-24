@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import {
   FaTachometerAlt,
@@ -21,7 +19,7 @@ import { MdOutlineSocialDistance } from "react-icons/md";
 import { useSelector } from "react-redux";
 // import HRDashboard from "../hr_dashboard/HRDashboard";
 
-const ForProjectSidebar = ({setActiveTab}) =>{
+const ForProjectSidebar = ({ setActiveTab }) => {
   // const [showEmployeeOptions, setShowEmployeeOptions] = useState(false);
   // const [showAccountOptions, setShowAccountOptions] = useState(false);
   // const [showReportOptions, setShowReportOptions] = useState(false);
@@ -107,17 +105,14 @@ const ForProjectSidebar = ({setActiveTab}) =>{
   //   },
   //   { title: "Page 404", link: "/404", icon: <FaBuilding /> },
   // ];
-  
 
   const handleOptionClick = (option) => {
     if (option.title === "Project") {
       setShowProjectOptions(!showProjectOptions);
-    
     } else {
-        console.log("Active tab ckicked", option.component);
+      console.log("Active tab ckicked", option.component);
       setActiveTab(option.component);
       setShowProjectOptions(false);
-     
     }
   };
   // const handleOptionClick = (option) => {
@@ -159,29 +154,24 @@ const ForProjectSidebar = ({setActiveTab}) =>{
 
   return (
     <>
-
-            <div className="flex flex-col pr-3 text-white">
-                <>
-                  {options.map((option, index) => (
-                    <div key={index}>
-                      <div
-                        className="flex items-center transition-all duration-500 hover:bg-white text-white hover:text-[#e65f2b] w-[200px] mx-0 rounded-tr-3xl rounded-br-3xl cursor-pointer"
-                        onClick={() => handleOptionClick(option)}
-                      >
-                        <div className="p-3 pl-4 text-xl flex items-center">
-                          {option.icon}
-                          <span className="ml-3">{option.title}</span>
-                        </div>
-                        {option.title === "Project" && (
-                          <div className="ml-auto pr-4">
-                            {showProjectOptions ? (
-                              <FaChevronUp />
-                            ) : (
-                              <FaChevronDown />
-                            )}
-                          </div>
-                        )}
-                        {/* {option.title === "Account" && (
+      <div className="flex flex-col pr-3 text-white">
+        <>
+          {options.map((option, index) => (
+            <div key={index}>
+              <div
+                className="flex items-center transition-all duration-500 hover:bg-white text-white hover:text-[#e65f2b] w-[200px] mx-0 rounded-tr-3xl rounded-br-3xl cursor-pointer"
+                onClick={() => handleOptionClick(option)}
+              >
+                <div className="p-3 pl-4 text-[16px] flex items-center">
+                  {option.icon}
+                  <span className="ml-3">{option.title}</span>
+                </div>
+                {option.title === "Project" && (
+                  <div className="ml-auto pr-4">
+                    {showProjectOptions ? <FaChevronUp /> : <FaChevronDown />}
+                  </div>
+                )}
+                {/* {option.title === "Account" && (
                           <div className="ml-auto pr-4">
                             {showAccountOptions ? (
                               <FaChevronUp />
@@ -208,24 +198,24 @@ const ForProjectSidebar = ({setActiveTab}) =>{
                             )}
                           </div>
                         )} */}
+              </div>
+              {option.title === "Project" && showProjectOptions && (
+                <div className="transition-all duration-500 ml-8 ">
+                  {projectOptions.map((item, idx) => (
+                    <div
+                      key={idx}
+                      className="flex items-center transition-all duration-500 hover:bg-white text-white hover:text-[#e65f2b] w-[200px] mx-0 rounded-tr-3xl rounded-br-3xl cursor-pointer"
+                      onClick={() => handleProjectOptionClick(item)}
+                    >
+                      <div className="p-3 pl-4 text-xl flex items-center">
+                        {item.icon}
+                        <span className="ml-3">{item.title}</span>
                       </div>
-                      {option.title === "Project" && showProjectOptions && (
-                        <div className="transition-all duration-500 ml-8 ">
-                          {projectOptions.map((item, idx) => (
-                            <div
-                              key={idx}
-                              className="flex items-center transition-all duration-500 hover:bg-white text-white hover:text-[#e65f2b] w-[200px] mx-0 rounded-tr-3xl rounded-br-3xl cursor-pointer"
-                              onClick={() => handleProjectOptionClick(item)}
-                            >
-                              <div className="p-3 pl-4 text-xl flex items-center">
-                                {item.icon}
-                                <span className="ml-3">{item.title}</span>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      {/* {option.title === "Account" && showAccountOptions && (
+                    </div>
+                  ))}
+                </div>
+              )}
+              {/* {option.title === "Account" && showAccountOptions && (
                         <div className="transition-all duration-500 ml-8 ">
                           {accountOptions.map((item, idx) => (
                             <div
@@ -273,12 +263,12 @@ const ForProjectSidebar = ({setActiveTab}) =>{
                           ))}
                         </div>
                       )} */}
-                    </div>
-                  ))}
-                </>
             </div>
+          ))}
+        </>
+      </div>
     </>
   );
-}
+};
 
 export default ForProjectSidebar;

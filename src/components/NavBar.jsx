@@ -27,14 +27,14 @@ function NavBar() {
 
   return (
     <>
-      <div id="main" className="">
+      <div id="main">
         <div
           id="topbar"
-          className="flex flex-row items-center pt-2 mx-2 gap-x-10 justify-end"
+          className="flex flex-row  fixed  w-[1300px] h-[50px] items-center pt-2 mx-2 gap-x-10 justify-end"
         >
-          <div className="w-[628px] h-[48px] bg-[#0098f1] rounded-xl flex justify-center items-center">
+          <div className="w-[428px]  h-[48px] bg-[#0098f1]  rounded-xl flex justify-center items-center">
             <input
-              className="pl-20 placeholder:text-white outline-none placeholder:text-start w-[628px] rounded-xl text-white h-[48px] border-none bg-[#0098f1]"
+              className="pl-32 placeholder:text-white outline-none placeholder:text-start w-[428px] rounded-xl text-white h-[48px] border-none bg-[#0098f1]"
               type="search"
               placeholder="Search Anything here...."
             />
