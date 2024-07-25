@@ -87,8 +87,14 @@ const InboxPage = () => {
     setInboxData(updatedStar);
   };
 
+  
+  const handleDeleteClick = (index) =>{
+    const updatedData = inboxData.filter((item, i) => i !== index);
+    setInboxData(updatedData);
+  }
+
   return (
-    <div className="rounded-r-xl bg-[#E6F5FE]">
+    <div className="rounded-r-xl min-w-[850px] bg-[#E6F5FE]">
       <div className="flex justify-between py-5 mx-10">
         <h1 className="text-xl font-semibold">Inbox</h1>
         <div className="flex items-center gap-1 border px-5 rounded-lg border-[#0098F1] bg-white">
@@ -153,7 +159,12 @@ const InboxPage = () => {
             </div>
             <div>
               <p className="group-hover:hidden">{data.time}</p>
-              <button className="hidden group-hover:block bg-red-500 p-2 text-xl text-white rounded-lg"><MdDeleteForever /></button>
+              <button
+                className="hidden group-hover:block bg-red-500 p-2 text-xl text-white rounded-lg"
+                onClick={() => handleDeleteClick(index)}
+              >
+                <MdDeleteForever />
+              </button>
             </div>
           </li>
         ))}
