@@ -57,11 +57,41 @@ const initialData = [
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
     time: "July 19",
   },
+  {
+    checkbox: false,
+    star: false,
+    name: "Venu Kumar",
+    description:
+      "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
+    time: "July 19",
+  },
+  {
+    checkbox: false,
+    star: false,
+    name: "Venu Kumar",
+    description:
+      "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
+    time: "July 19",
+  },
 ];
 
 const InboxPage = () => {
   const [inboxData, setInboxData] = useState(initialData);
   const [mainCheckbox, setMainCheckbox] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const itemsPerPage = 6;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = inboxData.slice(indexOfFirstItem, indexOfLastItem);
+  const totalPages = Math.ceil(inboxData.length / itemsPerPage);
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) return setCurrentPage(currentPage + 1);
+  };
+  const handlePreviousPage = () => {
+    if (currentPage > 1) return setCurrentPage(currentPage - 1);
+  };
 
   const handleCheckboxClick = (index) => {
     const updatedData = inboxData.map((item, i) =>
@@ -87,7 +117,6 @@ const InboxPage = () => {
     setInboxData(updatedStar);
   };
 
-  
   const handleDeleteClick = (index) =>{
     const updatedData = inboxData.filter((item, i) => i !== index);
     setInboxData(updatedData);
@@ -131,16 +160,16 @@ const InboxPage = () => {
           </button>
         </div>
         <div className="flex gap-1">
-          <button className="border rounded-l-lg bg-[#E65F2B] text-white w-8 h-8 px-1">
+          <button onClick={handlePreviousPage} className="border rounded-l-lg bg-[#E65F2B] text-white w-8 h-8 px-1">
             <PiLessThan className="text-2xl" />
           </button>
-          <button className="border rounded-r-lg bg-[#E65F2B] text-white w-8 h-8 px-1">
+          <button onClick={handleNextPage} className="border rounded-r-lg bg-[#E65F2B] text-white w-8 h-8 px-1">
             <PiGreaterThan className="text-2xl" />
           </button>
         </div>
       </div>
       <ul className="m-10">
-        {inboxData.map((data, index) => (
+        {currentItems.map((data, index) => (
           <li
             key={index}
             className=" cursor-pointer flex justify-between border-b py-3 group"

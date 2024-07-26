@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import unChecked from "../../../assets/project/inbox/uncheckbox.png";
-// import Checked from "../../../assets/project/inbox/checkbox.png";
-// import filledStar from "../../../assets/project/inbox/filledstar.png";
+import Checked from "../../../assets/project/inbox/checkbox.png";
+import filledStar from "../../../assets/project/inbox/filledstar.png";
 import unfilledstar from "../../../assets/project/inbox/unfilledstar.png";
 
 const SentPage = ({ sentMessage, onDeleteMessage }) => {
+  const [checkedStatus, setCheckedStatus] = useState(
+    Array(sentMessage.length).fill(false)
+  );
+  const handleCheckboxToggle = (index) => {
+    const newCheckedStatus = [...checkedStatus];
+    newCheckedStatus[index] = !newCheckedStatus[index];
+    setCheckedStatus(newCheckedStatus);
+  };
+
   const getCurrentDate = () => {
     const date = new Date();
-    const options = {month: "long", day: "numeric" };
+    const options = { month: "long", day: "numeric" };
     return date.toLocaleDateString(undefined, options);
   };
 
@@ -22,8 +31,11 @@ const SentPage = ({ sentMessage, onDeleteMessage }) => {
               className=" cursor-pointer flex justify-between border-b py-3 group"
             >
               <div className="flex gap-5">
-                <button className="">
-                  <img src={unChecked} alt="checkbox" />
+                <button onClick={() => handleCheckboxToggle(index)}>
+                  <img
+                    src={checkedStatus[index] ? Checked : unChecked}
+                    alt="checkbox"
+                  />
                 </button>
                 <button className="">
                   <img src={unfilledstar} alt="star" />
