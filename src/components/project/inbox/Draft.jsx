@@ -23,7 +23,7 @@ const Draft = ({draftMessage}) => {
   return (
     <div className="rounded-r-xl min-w-[850px] bg-[#E6F5FE]">
       <div className="py-5 mx-10">
-        <h1 className="text-xl font-semibold">Sent</h1>
+        <h1 className="text-xl font-semibold">Draft</h1>
         <ul className="">
           {draftMessage.map((message, index) => (
             <li

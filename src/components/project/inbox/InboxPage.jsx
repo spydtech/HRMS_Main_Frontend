@@ -8,74 +8,75 @@ import Checked from "../../../assets/project/inbox/checkbox.png";
 import filledStar from "../../../assets/project/inbox/filledstar.png";
 import unfilledstar from "../../../assets/project/inbox/unfilledstar.png";
 import { MdDeleteForever } from "react-icons/md";
+
 const initialData = [
   {
     checkbox: false,
     star: true,
-    name: "Venu Kumar",
-    description:
+    subject: "Venu Kumar",
+    message:
+      "[Support] There are many variations of passages of Lorem ipsum available, but the majoity Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ullam rem assumenda eveniet eligendi, voluptatum nesciunt voluptate ipsum sit quos, possimus excepturi nemo nisi maxime laudantium facere quis at obcaecati!",
+    time: "July 19",
+  },
+  {
+    checkbox: false,
+    star: false,
+    subject: "Venu Kumar",
+    message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
     time: "July 19",
   },
   {
     checkbox: false,
     star: false,
-    name: "Venu Kumar",
-    description:
-      "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
-    time: "July 19",
-  },
-  {
-    checkbox: false,
-    star: false,
-    name: "Venu Kumar",
-    description:
+    subject: "Venu Kumar",
+    message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
     time: "July 19",
   },
   {
     checkbox: false,
     star: true,
-    name: "Venu Kumar",
-    description:
+    subject: "Venu Kumar",
+    message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
     time: "July 19",
   },
   {
     checkbox: false,
     star: false,
-    name: "Venu Kumar",
-    description:
+    subject: "Venu Kumar",
+    message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
     time: "July 19",
   },
   {
     checkbox: false,
     star: false,
-    name: "Venu Kumar",
-    description:
+    subject: "Venu Kumar",
+    message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
     time: "July 19",
   },
   {
     checkbox: false,
     star: false,
-    name: "Venu Kumar",
-    description:
+    subject: "Venu Kumar",
+    message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
     time: "July 19",
   },
   {
     checkbox: false,
     star: false,
-    name: "Venu Kumar",
-    description:
+    subject: "Venu Kumar",
+    message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
     time: "July 19",
   },
 ];
 
-const InboxPage = () => {
+const InboxPage = ({ onSelectMessage }) => {
   const [inboxData, setInboxData] = useState(initialData);
   const [mainCheckbox, setMainCheckbox] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -117,9 +118,13 @@ const InboxPage = () => {
     setInboxData(updatedStar);
   };
 
-  const handleDeleteClick = (index) =>{
+  const handleDeleteClick = (index) => {
     const updatedData = inboxData.filter((item, i) => i !== index);
     setInboxData(updatedData);
+  };
+
+  const handleRefresh = () =>{
+    window.location.reload();  // refreshes the entire page
   }
 
   return (
@@ -144,7 +149,7 @@ const InboxPage = () => {
             <img src={mainCheckbox ? Checked : unChecked} alt="Main Checkbox" />
           </button>
           <div className="border border-[#E65F2B] rounded-lg">
-            <button className="border-r border-[#E65F2B] px-3 py-1">
+            <button onClick={handleRefresh} className="border-r border-[#E65F2B] px-3 py-1">
               Refresh
             </button>
             <button className="border-r border-[#E65F2B] px-3 py-1">
@@ -160,10 +165,16 @@ const InboxPage = () => {
           </button>
         </div>
         <div className="flex gap-1">
-          <button onClick={handlePreviousPage} className="border rounded-l-lg bg-[#E65F2B] text-white w-8 h-8 px-1">
+          <button
+            onClick={handlePreviousPage}
+            className="border rounded-l-lg bg-[#E65F2B] text-white w-8 h-8 px-1"
+          >
             <PiLessThan className="text-2xl" />
           </button>
-          <button onClick={handleNextPage} className="border rounded-r-lg bg-[#E65F2B] text-white w-8 h-8 px-1">
+          <button
+            onClick={handleNextPage}
+            className="border rounded-r-lg bg-[#E65F2B] text-white w-8 h-8 px-1"
+          >
             <PiGreaterThan className="text-2xl" />
           </button>
         </div>
@@ -181,9 +192,9 @@ const InboxPage = () => {
               <button onClick={() => handleStarClick(index)} className="">
                 <img src={data.star ? filledStar : unfilledstar} alt="star" />
               </button>
-              <div>
-                <h1>{data.name}</h1>
-                <p>{data.description}</p>
+              <div onClick={() => onSelectMessage(data)}>
+                <h1>{data.subject}</h1>
+                <p>{data.message.slice(0, 85)}</p>
               </div>
             </div>
             <div>
