@@ -4,6 +4,7 @@ import Checked from "../../../assets/project/inbox/checkbox.png";
 import filledStar from "../../../assets/project/inbox/filledstar.png";
 import unfilledstar from "../../../assets/project/inbox/unfilledstar.png";
 
+
 const SentPage = ({ sentMessage, onDeleteMessage }) => {
   const [checkedStatus, setCheckedStatus] = useState(
     Array(sentMessage.length).fill(false)
@@ -19,6 +20,7 @@ const SentPage = ({ sentMessage, onDeleteMessage }) => {
     const options = { month: "long", day: "numeric" };
     return date.toLocaleDateString(undefined, options);
   };
+
 
   return (
     <div className="rounded-r-xl min-w-[850px] bg-[#E6F5FE]">

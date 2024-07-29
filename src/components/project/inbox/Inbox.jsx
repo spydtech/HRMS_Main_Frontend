@@ -11,6 +11,7 @@ import Trash from "./Trash";
 const Inbox = () => {
     const [activePage, setActivePage] = useState("Inbox")
     const [sentMessage, setSentMessage] = useState([])
+    const [draftMessage, setDraftMessage] = useState([])
 
     const handleItemClick = (item) =>{
       setActivePage(item)
@@ -25,15 +26,19 @@ const Inbox = () => {
       setSentMessage(filteredMessages)
     }
 
+    const handleSaveDraft = (draft) => {
+      setDraftMessage([...draftMessage, draft]);
+    };
+
   return (
     <div className="pt-24 pl-6">
       <h1 className="text-[#E65F2B] px-2">Inbox</h1>
       <div className="flex gap-2 px-2 mt-5">
         <InboxSidebar onItemClick={handleItemClick} />
-        {activePage === "Compose" && <Compose onSendMessage={handleSendMessage} />}
+        {activePage === "Compose" && <Compose onSendMessage={handleSendMessage} onSaveDraft={handleSaveDraft}/>}
         {activePage === "Inbox" && <InboxPage />}
         {activePage === "Sent" && <SentPage  sentMessage={sentMessage} onDeleteMessage={handleDeleteMessage}/>}
-        {activePage === "Draft" && <Draft />}
+        {activePage === "Draft" && <Draft draftMessage = {draftMessage}/>}
         {activePage === "Outbox" && <Outbox />}
         {activePage === "Starred" && <Starred />}
         {activePage === "Trash" && <Trash />}

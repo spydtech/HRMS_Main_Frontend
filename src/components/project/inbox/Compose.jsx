@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GoBold } from "react-icons/go";
 import { RiItalic } from "react-icons/ri";
 import { FiUnderline } from "react-icons/fi";
@@ -18,7 +18,7 @@ import { HiOutlinePhotograph } from "react-icons/hi";
 import { TbSubscript } from "react-icons/tb";
 import { PiTextSuperscriptBold } from "react-icons/pi";
 
-const Compose = ({ onSendMessage }) => {
+const Compose = ({ onSendMessage, onSaveDraft }) => {
   const [moveDown, setMoveDown] = useState(false);
   const [to, setTo] = useState("");
   const [cc, setCc] = useState("");
@@ -27,6 +27,13 @@ const Compose = ({ onSendMessage }) => {
 
   const handleDropdown = () => {
     setMoveDown(!moveDown);
+  };
+
+  const resetForm = () => {
+    setTo("");
+    setCc("");
+    setSubject("");
+    setInputMesg("");
   };
 
   const handleSendButton = (e) => {
@@ -41,12 +48,29 @@ const Compose = ({ onSendMessage }) => {
         message: inputMesg,
       };
       onSendMessage(newMessage);
-      setTo("");
-      setCc("");
-      setSubject("");
-      setInputMesg("");
+      resetForm();
     }
   };
+
+  const handleDraftButton = (e) => {
+    e.preventDefault();
+    // Only save draft if at least one field has a value
+    if (to || cc || subject || inputMesg) {
+      const draftMessage = {
+        to: to,
+        cc: cc,
+        subject: subject,
+        message: inputMesg,
+      };
+      onSaveDraft(draftMessage);
+      resetForm();
+    } else {
+      alert("At least one field must be filled to save a draft.");
+    }
+  };
+
+ 
+
 
   return (
     <div className="rounded-r-xl min-w-[850px] bg-[#E6F5FE]">
@@ -232,6 +256,7 @@ const Compose = ({ onSendMessage }) => {
             <button
               type="button"
               className="bg-gray-400 text-white px-4 py-2 rounded-md text-sm"
+              onClick={handleDraftButton}
             >
               Draft
             </button>
