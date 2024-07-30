@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { GoBold } from "react-icons/go";
 import { RiItalic } from "react-icons/ri";
 import { FiUnderline } from "react-icons/fi";
@@ -21,7 +21,8 @@ import { PiTextSuperscriptBold } from "react-icons/pi";
 const Compose = ({ onSendMessage, onSaveDraft }) => {
   const [moveDown, setMoveDown] = useState(false);
   const [to, setTo] = useState("");
-  const [cc, setCc] = useState("");
+  const [ccInput, setCcInput] = useState("");
+  const [ccList, setCcList] = useState([]);
   const [subject, setSubject] = useState("");
   const [inputMesg, setInputMesg] = useState("");
 
@@ -31,19 +32,20 @@ const Compose = ({ onSendMessage, onSaveDraft }) => {
 
   const resetForm = () => {
     setTo("");
-    setCc("");
+    setCcInput("");
+    setCcList([]);
     setSubject("");
     setInputMesg("");
   };
 
   const handleSendButton = (e) => {
     e.preventDefault();
-    if (!to || !cc || !subject || !inputMesg) {
+    if (!to || !ccList.length || !subject || !inputMesg) {
       alert("All fields must be filled!");
     } else {
       const newMessage = {
         to: to,
-        cc: cc,
+        cc: ccList.join(", "),
         subject: subject,
         message: inputMesg,
       };
@@ -54,11 +56,10 @@ const Compose = ({ onSendMessage, onSaveDraft }) => {
 
   const handleDraftButton = (e) => {
     e.preventDefault();
-    // Only save draft if at least one field has a value
-    if (to || cc || subject || inputMesg) {
+    if (to || ccList.length || subject || inputMesg) {
       const draftMessage = {
         to: to,
-        cc: cc,
+        cc: ccList.join(", "),
         subject: subject,
         message: inputMesg,
       };
@@ -69,8 +70,17 @@ const Compose = ({ onSendMessage, onSaveDraft }) => {
     }
   };
 
- 
+  const handleCcKeyDown = (e) => {
+    if (e.key === "Enter" && ccInput.trim()) {
+      e.preventDefault();
+      setCcList([...ccList, ccInput.trim()]);
+      setCcInput("");
+    }
+  };
 
+  const removeCc = (index) => {
+    setCcList(ccList.filter((_, i) => i !== index));
+  };
 
   return (
     <div className="rounded-r-xl min-w-[850px] bg-[#E6F5FE]">
@@ -87,13 +97,33 @@ const Compose = ({ onSendMessage, onSaveDraft }) => {
             onChange={(e) => setTo(e.target.value)}
             value={to}
           />
-          <input
-            type="text"
-            className="bg-gray-100 w-full outline-none p-[6px] px-3 border border-gray-300 text-sm rounded-md"
-            placeholder="CC"
-            onChange={(e) => setCc(e.target.value)}
-            value={cc}
-          />
+          <div className="bg-gray-100 w-full outline-none border border-gray-300 text-sm rounded-md">
+            <input
+              type="text"
+              className="bg-transparent w-full outline-none p-[6px] px-3 text-sm"
+              placeholder="CC"
+              onChange={(e) => setCcInput(e.target.value)}
+              onKeyDown={handleCcKeyDown}
+              value={ccInput}
+            />
+            <div className="flex flex-wrap">
+              {ccList.map((cc, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-1 border rounded-full px-3 m-3 bg-gray-200"
+                >
+                  <span>{cc}</span>
+                  <button
+                    type="button"
+                    className="text-gray-600 hover:text-red-600 text-lg"
+                    onClick={() => removeCc(index)}
+                  >
+                    &times;
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
           <input
             type="text"
             className="bg-gray-100 w-full outline-none p-[6px] px-3 border border-gray-300 text-sm rounded-md"
@@ -104,7 +134,7 @@ const Compose = ({ onSendMessage, onSaveDraft }) => {
           <hr className="bg-gray-300 border-0 h-px" />
           <div className="bg-gray-100 w-full border border-gray-300">
             <div className="flex items-center gap-5">
-              <div className=" m-[6px] flex gap-2">
+              <div className="m-[6px] flex gap-2">
                 <button
                   onClick={() => formatText("b")}
                   type="button"
@@ -235,10 +265,10 @@ const Compose = ({ onSendMessage, onSaveDraft }) => {
               </div>
             </div>
             <hr className="bg-gray-300 border-0 h-px" />
-            <div className="min-h-36">
+            <div className="">
               <input
                 type="text"
-                className="bg-gray-100 w-full outline-none p-3 text-xs resize-y"
+                className="bg-gray-100 w-full outline-none p-3 pb-32 text-xs resize-y"
                 placeholder="Message"
                 onChange={(e) => setInputMesg(e.target.value)}
                 value={inputMesg}

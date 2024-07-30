@@ -13,6 +13,9 @@ const initialData = [
   {
     checkbox: false,
     star: true,
+    from : "John Smith",
+    mailId : "johnsmith2024@gmail.com",
+    to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti ullam rem assumenda eveniet eligendi, voluptatum nesciunt voluptate ipsum sit quos, possimus excepturi nemo nisi maxime laudantium facere quis at obcaecati!",
@@ -21,6 +24,9 @@ const initialData = [
   {
     checkbox: false,
     star: false,
+    from : "John Smith",
+    mailId : "johnsmith2024@gmail.com",
+    to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
@@ -29,6 +35,9 @@ const initialData = [
   {
     checkbox: false,
     star: false,
+    from : "John Smith",
+    mailId : "johnsmith2024@gmail.com",
+    to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
@@ -37,6 +46,9 @@ const initialData = [
   {
     checkbox: false,
     star: true,
+    from : "John Smith",
+    mailId : "johnsmith2024@gmail.com",
+    to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
@@ -45,6 +57,9 @@ const initialData = [
   {
     checkbox: false,
     star: false,
+    from : "John Smith",
+    mailId : "johnsmith2024@gmail.com",
+    to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
@@ -53,6 +68,9 @@ const initialData = [
   {
     checkbox: false,
     star: false,
+    from : "John Smith",
+    mailId : "johnsmith2024@gmail.com",
+    to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
@@ -61,6 +79,9 @@ const initialData = [
   {
     checkbox: false,
     star: false,
+    from : "John Smith",
+    mailId : "johnsmith2024@gmail.com",
+    to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
@@ -69,6 +90,9 @@ const initialData = [
   {
     checkbox: false,
     star: false,
+    from : "John Smith",
+    mailId : "johnsmith2024@gmail.com",
+    to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
       "[Support] There are many variations of passages of Lorem ipsum available, but the majoity",
