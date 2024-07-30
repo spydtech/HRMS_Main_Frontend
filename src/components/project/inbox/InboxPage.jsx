@@ -24,8 +24,8 @@ const initialData = [
   {
     checkbox: false,
     star: false,
-    from : "John Smith",
-    mailId : "johnsmith2024@gmail.com",
+    from : "Michael Jordan",
+    mailId : "michealjordan2024@gmail.com",
     to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
@@ -35,8 +35,8 @@ const initialData = [
   {
     checkbox: false,
     star: false,
-    from : "John Smith",
-    mailId : "johnsmith2024@gmail.com",
+    from : "Michael Jordan",
+    mailId : "michealjordan2024@gmail.com",
     to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
@@ -46,8 +46,8 @@ const initialData = [
   {
     checkbox: false,
     star: true,
-    from : "John Smith",
-    mailId : "johnsmith2024@gmail.com",
+    from : "Michael Jordan",
+    mailId : "michealjordan2024@gmail.com",
     to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
@@ -57,8 +57,8 @@ const initialData = [
   {
     checkbox: false,
     star: false,
-    from : "John Smith",
-    mailId : "johnsmith2024@gmail.com",
+    from : "Michael Jordan",
+    mailId : "michealjordan2024@gmail.com",
     to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
@@ -68,8 +68,8 @@ const initialData = [
   {
     checkbox: false,
     star: false,
-    from : "John Smith",
-    mailId : "johnsmith2024@gmail.com",
+    from : "Michael Jordan",
+    mailId : "michealjordan2024@gmail.com",
     to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
@@ -79,8 +79,8 @@ const initialData = [
   {
     checkbox: false,
     star: false,
-    from : "John Smith",
-    mailId : "johnsmith2024@gmail.com",
+    from : "Michael Jordan",
+    mailId : "michealjordan2024@gmail.com",
     to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:
@@ -90,8 +90,8 @@ const initialData = [
   {
     checkbox: false,
     star: false,
-    from : "John Smith",
-    mailId : "johnsmith2024@gmail.com",
+    from : "Michael Jordan",
+    mailId : "michealjordan2024@gmail.com",
     to: "Sathish, Shyam, Mounika",
     subject: "Venu Kumar",
     message:

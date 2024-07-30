@@ -4,9 +4,9 @@ import { HiMiniArrowUturnRight } from "react-icons/hi2";
 import { PiArrowBendDoubleUpLeftBold } from "react-icons/pi";
 
 const MessageDetailsPage = ({ message }) => {
-  if (!message) {
-    return <div>Select a message to view details</div>;
-  }
+  // if (!message) {
+  //   return <div>Select a message to view details</div>;
+  // }
 
   const upperCaseFirstLetter = (string) => {
     if (!string) return "";
@@ -19,7 +19,7 @@ const MessageDetailsPage = ({ message }) => {
       <h1 className="text-2xl mx-12">{message.subject}</h1>
       <div className="flex justify-between my-5 mr-3">
         <div className="flex gap-3">
-          <p className="bg-pink-400 p-1 px-4 text-2xl rounded-[50%]">
+          <p className="bg-pink-400 h-10 w-10 text-center text-2xl rounded-[50%]">
             {upperCaseFirstLetter(message.from)}
           </p>
           <div>
@@ -27,7 +27,7 @@ const MessageDetailsPage = ({ message }) => {
               <p className="font-bold">{message.from}</p>
               <p className="text-xs text-gray-600">&lt;{message.mailId}&gt;</p>
             </div>
-            <p className="text-gray-400 text-sm">to {message.to}{message.ccList}</p>
+            <p className="text-gray-400 text-sm">to {message.to}</p>
           </div>
         </div>
         <p className=" text-gray-600">{message.time}</p>
@@ -43,7 +43,7 @@ const MessageDetailsPage = ({ message }) => {
           <p className="text-gray-600">Reply all</p>
         </button>
         <button className="flex items-center gap-2 border border-gray-300 px-6 py-1 rounded-3xl">
-          <HiMiniArrowUturnLeft className="text-gray-600" />{" "}
+          <HiMiniArrowUturnRight className="text-gray-600" />{" "}
           <p className="text-gray-600">Forward</p>
         </button>
       </div>
