@@ -4,9 +4,7 @@ import { HiMiniArrowUturnRight } from "react-icons/hi2";
 import { PiArrowBendDoubleUpLeftBold } from "react-icons/pi";
 
 const MessageDetailsPage = ({ message }) => {
-  // if (!message) {
-  //   return <div>Select a message to view details</div>;
-  // }
+ 
 
   const upperCaseFirstLetter = (string) => {
     if (!string) return "";
