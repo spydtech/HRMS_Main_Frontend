@@ -148,7 +148,7 @@ const InboxPage = ({ onSelectMessage }) => {
   };
 
   const handleRefresh = () =>{
-    window.location.reload();  // refreshes the entire page
+    window.location.reload();  // refreshes the page
   }
 
   return (
