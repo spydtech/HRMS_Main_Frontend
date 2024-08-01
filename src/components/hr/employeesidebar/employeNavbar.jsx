@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 import { TiMessages } from "react-icons/ti";
 
-function NavBar({ onSearchChange }) {
+function EmployeeNavBar() {
   const [hoveredIcon, setHoveredIcon] = useState("");
 
   const handleMouseEnter = (iconName) => {
@@ -21,54 +21,62 @@ function NavBar({ onSearchChange }) {
   };
 
   const iconStyle = (iconName) => ({
-    color: hoveredIcon === iconName ? "#FF6A00" : "#0098F1",
+    color: hoveredIcon === iconName ? "#ef5f2b" : "#ef5f2b",
     fontSize: "1.5rem",
   });
 
   return (
-    <div id="main" className="bg-white p-2 shadow-md">
+    <div
+      id="main"
+      className="z-10 fixed bg-[#ef5f2b] bg-opacity-10 pb-2 top-0 left-0 right-0"
+    >
       <div
         id="topbar"
-        className="flex flex-col md:flex-row items-center md:justify-between gap-4 md:gap-x-10"
+        className="flex flex-row items-center pt-2 mx-2 gap-x-10 justify-end"
       >
-        <div className="w-full md:w-auto  ml-[400px] bg-[#0098f1] rounded-xl flex justify-center items-center px-2 py-1 md:py-2">
+        <div className="w-[428px] h-[48px] bg-[#ef5f2b] rounded-xl flex justify-center items-center">
           <input
-            type="text"
-            placeholder="Search..."
-            onChange={(e) => onSearchChange(e)}
-            className="search-input w-full md:w-[620px] h-[50px] rounded-lg "
+            className="pl-20 placeholder:text-white outline-none placeholder:text-start w-[428px] rounded-xl text-white h-[48px] border-none bg-[#ef5f2b]"
+            type="search"
+            placeholder="Search Anything here...."
           />
         </div>
         <div
           id="icons"
-          className="flex justify-around items-center w-full md:w-auto space-x-4 md:space-x-6"
+          className="w-[300px] h-[48px] text-white rounded-xl flex justify-around items-center"
         >
           <FaFolder
+            className="hover:cursor-pointer"
             style={iconStyle("folder")}
             onMouseEnter={() => handleMouseEnter("folder")}
             onMouseLeave={handleMouseLeave}
           />
           <FaCalendarDay
+            className="hover:cursor-pointer"
             style={iconStyle("calendar")}
             onMouseEnter={() => handleMouseEnter("calendar")}
             onMouseLeave={handleMouseLeave}
           />
           <TiMessages
+            className="hover:cursor-pointer"
             style={iconStyle("message")}
             onMouseEnter={() => handleMouseEnter("message")}
             onMouseLeave={handleMouseLeave}
           />
           <FaEnvelope
+            className="hover:cursor-pointer"
             style={iconStyle("mail")}
             onMouseEnter={() => handleMouseEnter("mail")}
             onMouseLeave={handleMouseLeave}
           />
           <FaBell
+            className="hover:cursor-pointer"
             style={iconStyle("bell")}
             onMouseEnter={() => handleMouseEnter("bell")}
             onMouseLeave={handleMouseLeave}
           />
           <FaFilter
+            className="hover:cursor-pointer"
             style={iconStyle("filter")}
             onMouseEnter={() => handleMouseEnter("filter")}
             onMouseLeave={handleMouseLeave}
@@ -79,4 +87,4 @@ function NavBar({ onSearchChange }) {
   );
 }
 
-export default NavBar;
+export default EmployeeNavBar;

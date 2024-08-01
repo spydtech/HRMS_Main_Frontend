@@ -8,7 +8,7 @@ const holidays = [
 
 function HolidayList() {
   return (
-    <div className="  mt-24 pl-8" >
+    <div className="  mt-0  pl-8" >
     <div className="p-4 " >
       <h2 className="text-xl font-bold text-[#E65F2B]  mb-4">Holidays List</h2>
       <table className="min-w-full ">

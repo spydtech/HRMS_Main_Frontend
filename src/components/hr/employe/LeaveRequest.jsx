@@ -230,7 +230,7 @@ function LeaveRequest() {
   return (
     <>
       {/* <SideBar /> */}
-      <div id="main" className="h-screen mt-24">
+      <div id="main" className="h-screen mt-0 ">
         {/* Header */}
         <div className="">
           <p className="text-[#e65f2b] font-semibold">

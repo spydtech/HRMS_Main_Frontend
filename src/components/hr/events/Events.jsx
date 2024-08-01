@@ -81,7 +81,7 @@ const Events = () => {
     };
 
     return (
-        <div className="mt-24 pl-4 h-screen">
+        <div className="mt-0  pl-4 h-screen">
         
             <div className="ml-5">
           <p className="text-[#e65f2b] font-bold text-lg">Events</p>
