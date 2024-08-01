@@ -8,7 +8,7 @@ const projects = [
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting.",
     teamMembers: [image4, image4, image4, image4],
-    progress: 50, 
+    progress: 50,
   },
   {
     title: "Word press - Theme Design",
@@ -50,8 +50,8 @@ const projects = [
 
 const ProjectGrid = () => {
   return (
-    <div className="mt-24 p-8">
-      <h2 className="text-[#E65F2B] text-2xl font-bold mb-6">Project Grid</h2>
+    <div className="p-4">
+      <h2 className="text-[#e65f2b] font-bold text-xl mb-2">Project Grid</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project, index) => (
           <div key={index} className="bg-white p-4 rounded-lg shadow-md">

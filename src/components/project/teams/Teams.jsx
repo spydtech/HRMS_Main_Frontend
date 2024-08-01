@@ -1,12 +1,3 @@
-// import React from 'react'
-
-// const Teams = () => {
-//   return (
-//     <div>Teams</div>
-//   )
-// }
-
-// export default Teams
 import React, { useState } from "react";
 
 const Teams = () => {
@@ -97,12 +88,10 @@ const Teams = () => {
   const teamsToDisplay = searchQuery.length > 0 ? filteredTeams : Teamsdata;
 
   return (
-    <div className="mt-24 p-5 ">
-      <h1 className="text-3xl text-orange-500 font-medium font-roboto mb-2">
-        Teams
-      </h1>
+    <div className=" p-5 ">
+      <h1 className="text-[#e65f2b] font-bold text-xl mb-3">Teams</h1>
 
-      <div className="w-full mt-10">
+      <div className="w-full ">
         <input
           type="search"
           className="w-full h-14 bg-transparent border-2 border-blue-500 rounded-lg outline-none px-3 py-2 placeholder-[#0098F1] "
@@ -115,8 +104,6 @@ const Teams = () => {
           value={searchQuery}
         />
       </div>
-
-
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 mt-5">
         {teamsToDisplay.map((team) => (
@@ -177,7 +164,6 @@ const Teams = () => {
           </div>
         ))}
       </div>
-
     </div>
   );
 };

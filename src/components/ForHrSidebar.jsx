@@ -32,14 +32,14 @@ const ForHrSidebar = ({setActiveTab}) =>{
 
   const options = [
     {
-      title: "HR Dashboard",
-      component: "HRDashboard",
+      title: "Hr Dashboard",
+      component: "Hr Dashboard",
       icon: <FaTachometerAlt />,
     },
-    { title: "Holidays", component: "HolidayTab", icon: <FaCalendarAlt /> },
+    { title: "Holidays", component: "Holiday", icon: <FaCalendarAlt /> },
     { title: "Events", component: "Events", icon: <FaCalendarCheck /> },
     { title: "Activities", component: "Activities", icon: <FaTasks /> },
-    { title: "HR Social", component: "HrSocial", icon: <MdOutlineSocialDistance /> },
+    { title: "HR Social", component: "HR Social", icon: <MdOutlineSocialDistance /> },
     { title: "Employee", component: "", icon: <FaUserFriends /> },
     { title: "Account", component: "", icon: <FaUserFriends /> },
     { title: "PayRoll", component: "", icon: <FaMoneyCheckAlt /> },
@@ -49,10 +49,10 @@ const ForHrSidebar = ({setActiveTab}) =>{
   ];
 
   const employeeOptions = [
-    { title: "All Employees", component: "AllEmployees", icon: <FaUsers /> },
+    { title: "All Employees", component: "All Employees", icon: <FaUsers /> },
     {
       title: "Leave Requests",
-      component: "LeaveRequest",
+      component: "Leave Requests",
       icon: <FaClipboardList />,
     },
     {
@@ -60,28 +60,28 @@ const ForHrSidebar = ({setActiveTab}) =>{
       component: "Attendance",
       icon: <FaCalendarCheck />,
     },
-    { title: "Department", component: "DepartmentList", icon: <FaBuilding /> },
+    { title: "Department", component: "Department", icon: <FaBuilding /> },
   ];
 
   const accountOptions = [
     {
-      title: "Payment",
-      component: "PaymentsTab",
+      title: "Account Payment",
+      component: "Account Payment",
       icon: <FaCalendarCheck />,
     },
-    { title: "Expenses", component: "ExpensesTab", icon: <FaBuilding /> },
-    { title: "Invoice", component: "InvoiceTab", icon: <FaBuilding /> },
+    { title: "Account Expenses", component: "Account Expenses", icon: <FaBuilding /> },
+    { title: "Account Invoice", component: "Account Invoice", icon: <FaBuilding /> },
   ];
 
   const reportOptions = [
     {
-      title: "Expenses Report",
-      component: "ReportExpenses",
+      title: "Report Expenses",
+      component: "Report Expenses",
       icon: <FaBuilding />,
     },
     {
-      title: "Invoice Report",
-      component: "ReportInvoice",
+      title: "Report Invoice",
+      component: "Report Invoice",
       icon: <FaBuilding />,
     },
   ];
