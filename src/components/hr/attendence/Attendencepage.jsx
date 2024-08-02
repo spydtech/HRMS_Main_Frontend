@@ -191,14 +191,14 @@ const AttendancePage = () => {
   const strokeDashoffset = circumference - (totalPercentage / 100) * circumference;
 
   return (
-    <div className="p-6 min-h-screen  bg-[#ef5f2b] bg-opacity-10">
+    <div className="p-6 min-h-screen  bg-[#ef5f2b] mt-8 bg-opacity-10">
 
       <h1 className="text-3xl font-bold mb-4">Employee Dashboard</h1>
       <div className="flex flex-col md:flex-row gap-6 mb-8">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/3">
           <h2 className="text-xl font-semibold mb-4">Timesheet</h2>
           <div className="bg-[#0098F1] text-white p-4 rounded-lg mb-4">
-            <h3 className="text-lg font-semibold">Punch In at</h3>
+            <h3 className="text-[20px] font-semibold">Punch In at</h3>
             <p className="text-xl">{currentDateTime}</p>
           </div>
           <div className="relative flex items-center justify-center mb-4">
@@ -235,7 +235,7 @@ const AttendancePage = () => {
           </div>
           <button
             onClick={handlePunchButtonClick}
-            className="bg-[#0098F1] text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600 transition"
+            className="bg-[#0098F1] text-[20px] text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600 transition"
           >
             {isPunchedIn ? "Punch Out" : "Punch In"}
           </button>
@@ -272,7 +272,7 @@ const AttendancePage = () => {
             </div>
           ))}
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/3 h-[450px] overflow-y-auto scrollbar-transparent scrollbar-hidden">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-full md:w-1/3 h-[450px] overflow-y-auto scrollbar-transparent scrollbar-hidden">
   <h2 className="text-xl font-semibold mb-4">Timeline</h2>
   <div className="relative">
     <div className="absolute left-5 top-1 h-full border-l-2 border-gray-300"></div>
@@ -281,15 +281,15 @@ const AttendancePage = () => {
         <div className={`w-3 h-3 bg-blue-500 rounded-full z-10 mt-1.5 pl-3 -ml-4`}></div>
         <div className="ml-6">
           <p className="text-sm text-gray-600">{activity.punchIn.toLocaleString()}</p>
-          <p className="font-semibold flex items-center">
-            <FaClock className="mr-2 text-blue-500" />
+          <p className="font-semibold flex  text-[17px] items-center">
+            <FaClock className="mr-2 text-blue-500 text-[15px]" />
             Punch In
           </p>
           {activity.punchOut && (
             <>
               <p className="text-sm text-gray-600">{activity.punchOut.toLocaleString()}</p>
-              <p className="font-semibold flex items-center">
-                <FaClock className="mr-2 text-red-500" />
+              <p className="font-semibold flex text-[17px] items-center">
+                <FaClock className="mr-2 text-red-500 text-[15px]" />
                 Punch Out
               </p>
             </>
@@ -305,20 +305,17 @@ const AttendancePage = () => {
       </div>
     ))}
   </div>
+  </div>
 </div>
-
-
-
-      </div>
-      <div className="flex items-center gap-4 mb-6">
+    <div className="flex items-center gap-4 mb-6">
   <DatePicker
     selected={searchDate}
     onChange={handleDateChange}
-    className="p-2 border border-gray-300 w-[150px] h-[50px]  rounded-xl  bg-[#FFFFFF] text-[#E65F2B] shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    className="p-2 border border-gray-300 w-[150px] h-[50px] rounded-xl bg-[#FFFFFF] text-[#E65F2B] text-[20px] shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
     dateFormat="yyyy-MM-dd"
   />
   <select 
-    className="p-2 border border-gray-300 rounded-xl  w-[150px] h-[50px]  bg-white text-[#E65F2B] shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    className="p-2 border border-gray-300 rounded-xl w-[150px] h-[50px] bg-white text-[#E65F2B] text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
     value={selectedMonth}
     onChange={handleMonthChange}
   >
@@ -333,7 +330,7 @@ const AttendancePage = () => {
   </select>
 
   <select 
-    className="p-2 border border-gray-300 rounded-xl  w-[150px] h-[50px]   bg-[#FFFFFF] text-[#E65F2B] focus:outline-none focus:ring-2 focus:ring-blue-500"
+    className="p-2 border border-gray-300 rounded-xl w-[150px] h-[50px] bg-[#FFFFFF] text-[#E65F2B] text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
     value={selectedYear}
     onChange={handleYearChange}
   >
@@ -353,8 +350,9 @@ const AttendancePage = () => {
   />
 </div>
 
-<table className="min-w-full bg-white rounded-lg shadow-lg border border-orange-900">
-  <thead className="bg-white text-[20px]">
+
+<table className="min-w-full bg-white  rounded-lg shadow-lg border border-orange-900">
+  <thead className="bg-[#E65F2B]  text-white text-[20px]">
     <tr>
       {[
         "No",
@@ -367,7 +365,7 @@ const AttendancePage = () => {
       ].map((header, index) => (
         <th
           key={index}
-          className="py-2 px-4 text-left text-orange-600 font-semibold border border-orange-500"
+          className="py-2 px-4 text-left text-white font-semibold border border-orange-500"
         >
           {header}
         </th>
@@ -380,26 +378,23 @@ const AttendancePage = () => {
 
       return (
         <tr key={index} className="border-t border-orange-500">
-          <td className="py-2 px-4 text-orange-600 border border-orange-500">{index + 1}</td>
-          <td className="py-2 px-4 text-orange-600 border border-orange-500">{punchIn.toLocaleDateString()}</td>
-          <td className="py-2 px-4 text-orange-600 border border-orange-500">{punchIn.toLocaleTimeString()}</td>
-          <td className="py-2 px-4 text-orange-600 border border-orange-500">{punchOut ? punchOut.toLocaleTimeString() : 'N/A'}</td>
-          <td className="py-2 px-4 text-orange-600 border border-orange-500">
+          <td className="py-2 px-4 text-orange-600  text-[14px] border border-orange-500">{index + 1}</td>
+          <td className="py-2 px-4 text-orange-600 text-[14px] border border-orange-500">{punchIn.toLocaleDateString()}</td>
+          <td className="py-2 px-4 text-orange-600 text-[14px] border border-orange-500">{punchIn.toLocaleTimeString()}</td>
+          <td className="py-2 px-4 text-orange-600 text-[14px] border border-orange-500">{punchOut ? punchOut.toLocaleTimeString() : 'N/A'}</td>
+          <td className="py-2 px-4 text-orange-600 text-[14px] border border-orange-500">
             {production.hours} hrs {production.minutes} mins {production.seconds} secs
           </td>
-          <td className="py-2 px-4 text-orange-600 border border-orange-500">
+          <td className="py-2 px-4 text-orange-600 border text-[14px] border-orange-500">
             {breakDuration.hours} hrs {breakDuration.minutes} mins {breakDuration.seconds} secs
           </td>
-          <td className="py-2 px-4 text-orange-600 border border-orange-500">{overtime} hrs</td>
+          <td className="py-2 px-4 text-orange-600 border text-[14px] border-orange-500">{overtime} hrs</td>
         </tr>
       );
     })}
   </tbody>
 </table>
-
-
-      
-      </div>
+</div>
   );
 };
 
