@@ -19,6 +19,7 @@ import ForgotPassword from "./components/hr/authentication/forgotPassword/Forgot
 import NotFoundPage from "./components/hr/authentication/notFoundPage/NotFoundPage";
 import Register from "./components/hr/authentication/register/Register";
 import EmployeeSideBar from "./employee/EmployeeSideBar";
+import PayrollDashboard from "./components/payroll/PayrollDashboard";
 function App() {
   return (
     <div>

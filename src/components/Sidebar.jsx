@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdMenu } from "react-icons/io";
@@ -70,11 +68,11 @@ const SideBar = () => {
     { title: "Events", icon: <FaCalendarCheck /> },
     { title: "Activities", icon: <FaTasks /> },
     { title: "HR Social", icon: <MdOutlineSocialDistance /> },
-    { title: "Employee", icon: <FaUserFriends /> },
+    { title: "Employee", icon: <FaUserFriends />, hasSubOptions: true },
     { title: "PayRoll", icon: <FaMoneyCheckAlt /> },
-    { title: "Reports", icon: <FaFileAlt /> },
-    { title: "Accounts", icon: <FaMoneyCheckAlt /> },
-    { title: "Authentication", icon: <FaLock /> },
+    { title: "Reports", icon: <FaFileAlt />, hasSubOptions: true },
+    { title: "Accounts", icon: <FaMoneyCheckAlt />, hasSubOptions: true },
+    { title: "Authentication", icon: <FaLock />, hasSubOptions: true },
   ];
 
   const employeeOptions = [
@@ -88,7 +86,7 @@ const SideBar = () => {
     { title: "Dashboard", icon: <FaTachometerAlt /> },
     { title: "Inbox", icon: <FaFileAlt /> },
     { title: "Chat", icon: <FaUser /> },
-    { title: "Projects", icon: <FaTasks /> },
+    { title: "Project", icon: <FaTasks />, hasSubOptions: true },
     { title: "Clients", icon: <FaUserFriends /> },
     { title: "Teams", icon: <FaUsers /> },
     { title: "Tickets", icon: <FaClipboardList /> },
@@ -116,7 +114,7 @@ const SideBar = () => {
     { title: "Login", link: "/login", icon: <FaBuilding /> },
     { title: "Register", link: "/register", icon: <FaBuilding /> },
     {
-      title: "Forget Password",
+      title: "Forgot Password",
       link: "/forget-password",
       icon: <FaBuilding />,
     },
@@ -128,9 +126,10 @@ const SideBar = () => {
       case "Employee":
         setShowEmployeeOptions(!showEmployeeOptions);
         break;
-      case "Projects":
+      case "Project":
         setShowProjectOptions(!showProjectOptions);
         break;
+
       case "Reports":
         setShowReportOptions(!showReportOptions);
         break;
@@ -159,8 +158,12 @@ const SideBar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
 
+  const handleOptionClickNavigate = (authOption) => {
+    navigate(authOption.link);
+  };
+
   return (
-    <div className="relative ">
+    <div className="relative h-auto bg-[#0098f1]  bg-opacity-10">
       <NavBar />
       <div
         className={`fixed top-0 h-screen pb-10 bg-[#0098f1] text-white overflow-x-hidden scrollbar-thin scrollbar-thumb-transparent scrollbar-track-transparent ${
@@ -185,6 +188,7 @@ const SideBar = () => {
             </div>
           )}
         </div>
+
         {!isSidebarCollapsed && (
           <div className="text-[16px] text-white flex justify-around pr-5 pb-3 items-center">
             <span
@@ -199,7 +203,7 @@ const SideBar = () => {
             </span>
             <span
               className={`cursor-pointer ${
-                selectedHeader === "Projects"
+                selectedHeader === "Project"
                   ? "underline decoration-3  underline-offset-8"
                   : ""
               }`}
@@ -210,235 +214,280 @@ const SideBar = () => {
           </div>
         )}
         {selectedHeader === "Hr" && (
-          <div className="mt-4">
-            {options.map((option, index) => (
-              <div key={index}>
-                <div
-                  className={`flex items-center p-3 my-1 px-4 cursor-pointer ${
-                    activeTab === option.title
-                      ? "bg-white rounded-r-[10px] text-[#ef5f2b]"
-                      : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-[10px]"
-                  }`}
-                  onClick={() => handleOptionClick(option)}
-                >
-                  <span className="text-xl">{option.icon}</span>
-                  {!isSidebarCollapsed && (
-                    <span className="ml-2">{option.title}</span>
-                  )}
-                  {!isSidebarCollapsed &&
-                    ["Employee", "Projects", "Reports", "Accounts", "Authentication"].includes(
-                      option.title
-                    ) && (
-                      <span className="ml-auto">
-                        {option.title === "Employee" &&
-                          (showEmployeeOptions ? (
-                            <FaChevronUp />
-                          ) : (
-                            <FaChevronDown />
-                          ))}
-                        {option.title === "Projects" &&
-                          (showProjectOptions ? (
-                            <FaChevronUp />
-                          ) : (
-                            <FaChevronDown />
-                          ))}
-                        {option.title === "Reports" &&
-                          (showReportOptions ? (
-                            <FaChevronUp />
-                          ) : (
-                            <FaChevronDown />
-                          ))}
-                        {option.title === "Accounts" &&
-                          (showAccountOptions ? (
-                            <FaChevronUp />
-                          ) : (
-                            <FaChevronDown />
-                          ))}
-                        {option.title === "Authentication" &&
-                          (showAuthOptions ? (
-                            <FaChevronUp />
-                          ) : (
-                            <FaChevronDown />
-                          ))}
+          <div className="pr-2">
+            <ul className="pt-3 pr-1">
+              {options.map((option) => (
+                <React.Fragment key={option.title}>
+                  <li
+                    className={`flex justify-between text-[16px] pl-5 py-3  mb-1 items-center cursor-pointer ${
+                      activeTab === option.title
+                        ? "bg-white rounded-r-full text-[#ef5f2b]"
+                        : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-full"
+                    }`}
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    <div className="flex items-center">
+                      {option.icon}
+                      <span
+                        className={`pl-2 ${
+                          isSidebarCollapsed ? "hidden" : "inline"
+                        }`}
+                      >
+                        {option.title}
+                      </span>
+                    </div>
+                    {!isSidebarCollapsed && option.hasSubOptions && (
+                      <span className="pr-5">
+                        {option.title === "Employee" && showEmployeeOptions ? (
+                          <FaChevronUp />
+                        ) : option.title === "Projects" &&
+                          showProjectOptions ? (
+                          <FaChevronUp />
+                        ) : option.title === "Reports" && showReportOptions ? (
+                          <FaChevronUp />
+                        ) : option.title === "Accounts" &&
+                          showAccountOptions ? (
+                          <FaChevronUp />
+                        ) : option.title === "Authentication" &&
+                          showAuthOptions ? (
+                          <FaChevronUp />
+                        ) : (
+                          <FaChevronDown />
+                        )}
                       </span>
                     )}
-                </div>
-                {!isSidebarCollapsed && option.title === "Employee" && showEmployeeOptions && (
-                  <div className="pl-10">
-                    {employeeOptions.map((subOption, subIndex) => (
-                      <div
-                        key={subIndex}
-                        className={`flex items-center p-2 my-1 px-4 cursor-pointer ${
-                          activeTab === subOption.title
-                            ? "bg-white rounded-r-[10px] text-[#ef5f2b]"
-                            : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-[10px]"
-                        }`}
-                        onClick={() => handleOptionClick(subOption)}
-                      >
-                        <span className="text-lg">{subOption.icon}</span>
-                        <span className="ml-2">{subOption.title}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {!isSidebarCollapsed && option.title === "Projects" && showProjectOptions && (
-                  <div className="pl-10">
-                    {projectDropdownOptions.map((subOption, subIndex) => (
-                      <div
-                        key={subIndex}
-                        className={`flex items-center p-2 my-1 px-4 cursor-pointer ${
-                          activeTab === subOption.title
-                            ? "bg-white rounded-r-[10px] text-[#ef5f2b]"
-                            : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-[10px]"
-                        }`}
-                        onClick={() => handleOptionClick(subOption)}
-                      >
-                        <span className="text-lg">{subOption.icon}</span>
-                        <span className="ml-2">{subOption.title}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {!isSidebarCollapsed && option.title === "Reports" && showReportOptions && (
-                  <div className="pl-10">
-                    {reportOptions.map((subOption, subIndex) => (
-                      <div
-                        key={subIndex}
-                        className={`flex items-center p-2 my-1 px-4 cursor-pointer ${
-                          activeTab === subOption.title
-                            ? "bg-white rounded-r-[10px] text-[#ef5f2b]"
-                            : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-[10px]"
-                        }`}
-                        onClick={() => handleOptionClick(subOption)}
-                      >
-                        <span className="text-lg">{subOption.icon}</span>
-                        <span className="ml-2">{subOption.title}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {!isSidebarCollapsed && option.title === "Accounts" && showAccountOptions && (
-                  <div className="pl-10">
-                    {accountOptions.map((subOption, subIndex) => (
-                      <div
-                        key={subIndex}
-                        className={`flex items-center p-2 my-1 px-4 cursor-pointer ${
-                          activeTab === subOption.title
-                            ? "bg-white rounded-r-[10px] text-[#ef5f2b]"
-                            : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-[10px]"
-                        }`}
-                        onClick={() => handleOptionClick(subOption)}
-                      >
-                        <span className="text-lg">{subOption.icon}</span>
-                        <span className="ml-2">{subOption.title}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {!isSidebarCollapsed && option.title === "Authentication" && showAuthOptions && (
-                  <div className="pl-10">
-                    {authOptions.map((subOption, subIndex) => (
-                      <div
-                        key={subIndex}
-                        className={`flex items-center p-2 my-1 px-4 cursor-pointer ${
-                          activeTab === subOption.title
-                            ? "bg-white rounded-r-[10px] text-[#ef5f2b]"
-                            : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-[10px]"
-                        }`}
-                        onClick={() => {
-                          handleOptionClick(subOption);
-                          navigate(subOption.link);
-                        }}
-                      >
-                        <span className="text-lg">{subOption.icon}</span>
-                        <span className="ml-2">{subOption.title}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                  </li>
+                  {!isSidebarCollapsed &&
+                    option.title === "Employee" &&
+                    showEmployeeOptions && (
+                      <ul className="">
+                        {employeeOptions.map((subOption) => (
+                          <li
+                            key={subOption.title}
+                            className={`flex justify-start items-center text-[16px] pl-5 py-2 cursor-pointer  mb-1 ${
+                              activeTab === subOption.title
+                                ? "bg-white bg-opacity-50 rounded-r-full text-[#ef5f2b]"
+                                : "hover:bg-white hover:bg-opacity-50 hover:text-[#ef5f2b] hover:rounded-r-full"
+                            }`}
+                            onClick={() => setActiveTab(subOption.title)}
+                          >
+                            {subOption.icon}
+                            <span className="pl-2">{subOption.title}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  {!isSidebarCollapsed &&
+                    option.title === "Projects" &&
+                    showProjectOptions && (
+                      <ul className="">
+                        {projectOptions.map((subOption) => (
+                          <li
+                            key={subOption.title}
+                            className={`flex justify-between items-center text-[16px] pl-5 py-2 cursor-pointer  mb-1 ${
+                              activeTab === subOption.title
+                                ? "bg-white bg-opacity-50 rounded-r-full text-[#ef5f2b]"
+                                : "hover:bg-white hover:bg-opacity-50 hover:text-[#ef5f2b] hover:rounded-r-full"
+                            }`}
+                            onClick={() => handleOptionClick(subOption)}
+                          >
+                            <div className="flex items-center">
+                              {subOption.icon}
+                              <span className="pl-2">{subOption.title}</span>
+                            </div>
+                            {!isSidebarCollapsed && subOption.hasSubOptions && (
+                              <span className="pr-5">
+                                {subOption.title === "Project" &&
+                                showProjectOptions ? (
+                                  <FaChevronUp />
+                                ) : (
+                                  <FaChevronDown />
+                                )}
+                              </span>
+                            )}
+                          </li>
+                        ))}
+
+                        {showProjectOptions && (
+                          <ul className="pt-3 text-[16px]">
+                            {projectDropdownOptions.map((dropdownOption) => (
+                              <li
+                                key={dropdownOption.title}
+                                onClick={() =>
+                                  setActiveTab(dropdownOption.title)
+                                }
+                                className={`${
+                                  activeTab === dropdownOption.title
+                                    ? "bg-white bg-opacity-50 rounded-r-full text-[#ef5f2b]"
+                                    : "hover:bg-white hover:bg-opacity-50 hover:text-[#ef5f2b] hover:rounded-r-full"
+                                } py-2 pl-12 flex items-center cursor-pointer`}
+                              >
+                                <span className="pr-2">
+                                  {dropdownOption.icon}
+                                </span>
+                                {dropdownOption.title}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </ul>
+                    )}
+                  {!isSidebarCollapsed &&
+                    option.title === "Reports" &&
+                    showReportOptions && (
+                      <ul className="">
+                        {reportOptions.map((subOption) => (
+                          <li
+                            key={subOption.title}
+                            className={`flex justify-start items-center text-[16px] pl-5 py-2 cursor-pointer  mb-1 ${
+                              activeTab === subOption.title
+                                ? "bg-white bg-opacity-50 rounded-r-full text-[#ef5f2b]"
+                                : "hover:bg-white hover:bg-opacity-50 hover:text-[#ef5f2b] hover:rounded-r-full"
+                            }`}
+                            onClick={() => setActiveTab(subOption.title)}
+                          >
+                            {subOption.icon}
+                            <span className="pl-2">{subOption.title}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  {!isSidebarCollapsed &&
+                    option.title === "Accounts" &&
+                    showAccountOptions && (
+                      <ul className="">
+                        {accountOptions.map((subOption) => (
+                          <li
+                            key={subOption.title}
+                            className={`flex justify-start items-center text-[16px] pl-5 py-2 cursor-pointer  mb-1 ${
+                              activeTab === subOption.title
+                                ? "bg-white bg-opacity-50 rounded-r-full text-[#ef5f2b]"
+                                : "hover:bg-white hover:bg-opacity-50 hover:text-[#ef5f2b] hover:rounded-r-full"
+                            }`}
+                            onClick={() => setActiveTab(subOption.title)}
+                          >
+                            {subOption.icon}
+                            <span className="pl-2">{subOption.title}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  {!isSidebarCollapsed &&
+                    option.title === "Authentication" &&
+                    showAuthOptions && (
+                      <ul className="">
+                        {authOptions.map((authOption) => (
+                          <li
+                            key={authOption.title}
+                            className={`flex justify-start items-center text-[16px] pl-5 py-2 cursor-pointer  mb-1 ${
+                              activeTab === authOption.title
+                                ? "bg-white bg-opacity-50 rounded-r-full text-[#ef5f2b]"
+                                : "hover:bg-white hover:bg-opacity-50 hover:text-[#ef5f2b] hover:rounded-r-full"
+                            }`}
+                            onClick={() =>
+                              handleOptionClickNavigate(authOption)
+                            }
+                          >
+                            {authOption.icon}
+                            <span className="pl-2">{authOption.title}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                </React.Fragment>
+              ))}
+            </ul>
           </div>
         )}
+
         {selectedHeader === "Project" && (
-          <div className="mt-4">
-            {projectOptions.map((option, index) => (
-              <div key={index}>
-                <div
-                  className={`flex items-center p-3 my-1 px-4 cursor-pointer ${
-                    activeTab === option.title
-                      ? "bg-white rounded-r-[10px] text-[#ef5f2b]"
-                      : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-[10px]"
-                  }`}
-                  onClick={() => handleOptionClick(option)}
-                >
-                  <span className="text-xl">{option.icon}</span>
-                  {!isSidebarCollapsed && (
-                    <span className="ml-2">{option.title}</span>
-                  )}
-                  {!isSidebarCollapsed && option.title === "Projects" && (
-                    <span className="ml-auto">
-                      {showProjectOptions ? <FaChevronUp /> : <FaChevronDown />}
-                    </span>
-                  )}
-                </div>
-                {!isSidebarCollapsed && option.title === "Projects" && showProjectOptions && (
-                  <div className="pl-10">
-                    {projectDropdownOptions.map((subOption, subIndex) => (
-                      <div
-                        key={subIndex}
-                        className={`flex items-center p-2 my-1 px-4 cursor-pointer ${
-                          activeTab === subOption.title
-                            ? "bg-white rounded-r-[10px] text-[#ef5f2b]"
-                            : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-[10px]"
+          <div className="pr-2">
+            <ul className="pt-3 pr-1">
+              {projectOptions.map((option) => (
+                <React.Fragment key={option.title}>
+                  <li
+                    className={`flex justify-between text-[16px] pl-5 py-3  mb-1 items-center cursor-pointer ${
+                      activeTab === option.title
+                        ? "bg-white rounded-r-full text-[#ef5f2b]"
+                        : "hover:bg-white hover:text-[#ef5f2b] hover:rounded-r-full"
+                    }`}
+                    onClick={() => handleOptionClick(option)}
+                  >
+                    <div className="flex items-center">
+                      {option.icon}
+                      <span
+                        className={`pl-2 ${
+                          isSidebarCollapsed ? "hidden" : "inline"
                         }`}
-                        onClick={() => handleOptionClick(subOption)}
                       >
-                        <span className="text-lg">{subOption.icon}</span>
-                        <span className="ml-2">{subOption.title}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+                        {option.title}
+                      </span>
+                    </div>
+                    {!isSidebarCollapsed && option.hasSubOptions && (
+                      <span className="pr-5">
+                        {option.title === "Project" && showProjectOptions ? (
+                          <FaChevronUp />
+                        ) : (
+                          <FaChevronDown />
+                        )}
+                      </span>
+                    )}
+                  </li>
+                  {!isSidebarCollapsed &&
+                    option.title === "Project" &&
+                    showProjectOptions && (
+                      <ul className="">
+                        {projectDropdownOptions.map((subOption) => (
+                          <li
+                            key={subOption.title}
+                            className={`flex justify-start items-center text-[16px] pl-5 py-2 cursor-pointer  mb-1 ${
+                              activeTab === subOption.title
+                                ? "bg-white bg-opacity-50 rounded-r-full text-[#ef5f2b]"
+                                : "hover:bg-white hover:bg-opacity-50 hover:text-[#ef5f2b] hover:rounded-r-full"
+                            }`}
+                            onClick={() => setActiveTab(subOption.title)}
+                          >
+                            {subOption.icon}
+                            <span className="pl-2">{subOption.title}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                </React.Fragment>
+              ))}
+            </ul>
           </div>
         )}
       </div>
-      <div className="ml-0 sm:ml-[240px] h-full">
-        {selectedHeader === "Hr" ? (
-          <>
-            {activeTab === "Hr Dashboard" && <HrDashboard />}
-            {activeTab === "Holiday" && <HolidayTab />}
-            {activeTab === "All Employees" && <AllEmployees />}
-            {activeTab === "Leave Requests" && <LeaveRequest />}
-            {activeTab === "Attendance" && <Attendance />}
-            {activeTab === "Department" && <DepartmentList />}
-            {activeTab === "Events" && <Events />}
-            {activeTab === "Activities" && <Activities />}
-            {activeTab === "HR Social" && <HrSocial />}
-            {activeTab === "Report Invoice" && <ReportInvoice />}
-            {activeTab === "Report Expenses" && <ReportExpenses />}
-            {activeTab === "Account Payment" && <AccountPayments />}
-            {activeTab === "Account Expenses" && <AccountExpenses />}
-            {activeTab === "Account Invoice" && <AccountInvoice />}
-            {activeTab === "User List" && <UserList />}
-          </>
-        ) : (
-          <>
-            {activeTab === "Dashboard" && <Dashboard />}
-            {activeTab === "Inbox" && <Inbox />}
-            {activeTab === "Chat" && <Chat />}
-            {activeTab === "Projects" && <ProjectList />}
-            {activeTab === "Clients" && <div>Clients Component</div>}
-            {activeTab === "Teams" && <Teams />}
-            {activeTab === "Tickets" && <Tickets />}
-            {activeTab === "Add Project" && <AddProject />}
-            {activeTab === "Project List" && <ProjectList />}
-            {activeTab === "Project Grid" && <ProjectGrid />}
-            {activeTab === "Project Detail" && <ProjectDetails />}
-          </>
-        )}
+      <div
+        className={`flex-1 ml-4 transition-all ${
+          isSidebarCollapsed ? "ml-[100px]" : "ml-[240px]"
+        }`}
+      >
+        {activeTab === "Hr Dashboard" && <HrDashboard />}
+        {activeTab === "Holiday" && <HolidayTab />}
+        {activeTab === "Events" && <Events />}
+        {activeTab === "Activities" && <Activities />}
+        {activeTab === "HR Social" && <HrSocial />}
+        {activeTab === "All Employees" && <AllEmployees />}
+        {activeTab === "Leave Requests" && <LeaveRequest />}
+        {activeTab === "Attendance" && <Attendance />}
+        {activeTab === "Department" && <DepartmentList />}
+        {activeTab === "Report Invoice" && <ReportInvoice />}
+        {activeTab === "Report Expenses" && <ReportExpenses />}
+        {activeTab === "Account Payment" && <AccountPayments />}
+        {activeTab === "Account Expenses" && <AccountExpenses />}
+        {activeTab === "Account Invoice" && <AccountInvoice />}
+        {activeTab === "Dashboard" && <Dashboard />}
+        {activeTab === "Inbox" && <Inbox />}
+        {activeTab === "Chat" && <Chat />}
+        {activeTab === "Add Project" && <AddProject />}
+        {activeTab === "Project List" && <ProjectList />}
+        {activeTab === "Project Grid" && <ProjectGrid />}
+        {activeTab === "Project Detail" && <ProjectDetails />}
+        {activeTab === "Clients" && <UserList />}
+        {activeTab === "Teams" && <Teams />}
+        {activeTab === "Tickets" && <Tickets />}
       </div>
     </div>
   );
