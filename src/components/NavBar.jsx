@@ -109,12 +109,12 @@ function NavBar({ onSearchChange }) {
   });
 
   return (
-    <div id="main" className="bg-white p-2">
+    <div id="main" className=" p-2">
       <div
         id="topbar"
         className="flex flex-row items-center pt-2 mx-2 gap-x-10 justify-center"
       >
-        <div className="w-auto ml-[210px] h-[48px] bg-[#0098f1] rounded-xl flex justify-center items-center">
+        <div className="w-auto ml-[210px] h-[48px] bg-[#0098f1] bg-opacity-10 rounded-xl flex justify-center items-center">
           <input
             className="pl-20 placeholder:text-white outline-none placeholder:text-start w-[428px] rounded-xl text-white h-[48px] border-none bg-[#0098f1]"
             type="search"
