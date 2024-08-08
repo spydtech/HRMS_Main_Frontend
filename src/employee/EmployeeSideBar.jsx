@@ -24,6 +24,8 @@ import {
   FaTicketAlt,
   FaChevronDown,
   FaChevronUp,
+  FaUserTie ,
+
 } from "react-icons/fa";
 import { SiHdfcbank } from "react-icons/si";
 import { GiPayMoney } from "react-icons/gi";
@@ -37,7 +39,9 @@ const EmployeeSideBar = () => {
   const [openDropdown, setOpenDropdown] = useState("");
 
   const options = [
+    { title: "Employee Dashboard", icon: <FaUserTie /> },
     { title: "All Employees", icon: <FaUsers /> },
+   
     { title: "Holidays", icon: <FaCalendarAlt /> },
     { title: "Events", icon: <FaCalendarCheck /> },
     { title: "Activities", icon: <FaTasks /> },
